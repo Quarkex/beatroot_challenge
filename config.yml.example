@@ -1,0 +1,4 @@
+API-base-url: "https://sync-api.beatroot.com"
+account-slug: "beatroot-records"
+authentication-token: "________-____-____-____-____________"
+release_id-for-the-example-xml: 1

@@ -2,11 +2,11 @@ require 'beatroot'
 require 'config'
 require 'json'
 
+config = Config.new('config.yml')
+
 RSpec.describe Beatroot, "#read_tracks" do
   context "with known token" do
     it "downloads correctly from server" do
-      config = Config.new('config.yml')
-
       beatroot = Beatroot.new(
         config.api_base_url,
         config.account_slug,

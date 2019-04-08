@@ -14,6 +14,12 @@ class Beatroot
     @token = token
   end
 
+  ## TODO Add single track fetching.
+  ## Seems to be ok acording to documentation.
+  def get_track_by_id(id)
+    _get("track/#{id}")
+  end
+
   def get_all_tracks(page=1, limit=50)
     _get("tracks?page=#{page}&per_page=#{limit}")
   end

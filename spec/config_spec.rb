@@ -10,8 +10,8 @@ RSpec.describe Config, "#read" do
       test_file.tap do |f|
         content = <<~HEREDOC.strip
         key: value
-        another_key: another value
-        number: 1
+        another-key: another value
+        NUMBER: 1
         array: 
           - a
           - b

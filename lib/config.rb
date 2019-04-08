@@ -6,8 +6,8 @@ class Config
 
       file = YAML.load_file(path)
       file.each do |attr, value|
-        define_singleton_method("#{attr}=") { |val|file[attr] = val }
-        define_singleton_method(attr) { file[attr] }
+        define_singleton_method("#{attr.downcase.gsub('-', '_')}=") { |val|file[attr] = val }
+        define_singleton_method(attr.downcase.gsub('-', '_')) { file[attr] }
       end
 
     else

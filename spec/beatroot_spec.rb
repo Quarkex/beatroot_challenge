@@ -17,12 +17,9 @@ RSpec.describe Beatroot, "#read_tracks" do
       expect(tracks).to have_key "tracks"
       expect(tracks).to have_key "meta"
 
-      ## TODO Add single track fetching.
-      ## Seems to be ok acording to documentation.
-      #
-      #track = beatroot.track(tracks["tracks"].first["id"])
-      #
-      #expect(track).to have_key "track"
+      track = beatroot.track(tracks["tracks"].first["id"])
+
+      expect(track).to have_key "track"
 
     end
   end

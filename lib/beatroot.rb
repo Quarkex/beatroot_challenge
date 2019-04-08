@@ -2,6 +2,7 @@ require 'ox'
 require 'net/http'
 require 'net/https'
 require 'uri'
+require 'json'
 
 
 class Beatroot
@@ -17,11 +18,21 @@ class Beatroot
   ## TODO Add single track fetching.
   ## Seems to be ok acording to documentation.
   def get_track_by_id(id)
-    _get("track/#{id}")
+    res = _get("track/#{id}")
+    if res.code == "200" then
+      JSON.parse res.body
+    else
+      raise "Error downloading track. Response code: #{res.code}"
+    end
   end
 
   def get_all_tracks(page=1, limit=50)
-    _get("tracks?page=#{page}&per_page=#{limit}")
+    res = _get("tracks?page=#{page}&per_page=#{limit}")
+    if res.code == "200" then
+      JSON.parse res.body
+    else
+      raise "Error downloading tracks. Response code: #{res.code}"
+    end
   end
 
   private

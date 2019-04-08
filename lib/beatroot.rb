@@ -15,10 +15,8 @@ class Beatroot
     @token = token
   end
 
-  ## TODO Add single track fetching.
-  ## Seems to be ok acording to documentation.
   def track(id)
-    res = _get("track/#{id}")
+    res = _get("tracks/#{id}")
     if res.code == "200" then
       JSON.parse res.body
     else

@@ -17,7 +17,7 @@ class Beatroot
 
   ## TODO Add single track fetching.
   ## Seems to be ok acording to documentation.
-  def get_track_by_id(id)
+  def track(id)
     res = _get("track/#{id}")
     if res.code == "200" then
       JSON.parse res.body
@@ -26,7 +26,7 @@ class Beatroot
     end
   end
 
-  def get_all_tracks(page=1, limit=50)
+  def tracks(page=1, limit=50)
     res = _get("tracks?page=#{page}&per_page=#{limit}")
     if res.code == "200" then
       JSON.parse res.body

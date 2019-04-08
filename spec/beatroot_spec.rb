@@ -12,8 +12,7 @@ RSpec.describe Beatroot, "#read_tracks" do
         config.authentication_token
       )
 
-      tracks = beatroot.get_all_tracks()
-
+      tracks = beatroot.tracks()
 
       expect(tracks).to have_key "tracks"
       expect(tracks).to have_key "meta"
@@ -21,7 +20,7 @@ RSpec.describe Beatroot, "#read_tracks" do
       ## TODO Add single track fetching.
       ## Seems to be ok acording to documentation.
       #
-      #track = beatroot.get_track_by_id(tracks["tracks"].first["id"])
+      #track = beatroot.track(tracks["tracks"].first["id"])
       #
       #expect(track).to have_key "track"
 

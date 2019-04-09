@@ -1,4 +1,3 @@
-require 'ox'
 require 'net/http'
 require 'net/https'
 require 'uri'

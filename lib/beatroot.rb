@@ -3,6 +3,7 @@ require 'net/https'
 require 'uri'
 require 'json'
 require_relative 'track'
+require_relative 'release'
 
 
 class Beatroot
@@ -38,7 +39,9 @@ class Beatroot
   def release(id)
     res = _get("releases/#{id}")
     if res.code == "200" then
-      JSON.parse res.body
+      model = JSON.parse(res.body)["release"]
+      model["tracks"].map!{|t| track t["id"] }
+      Release.new(model)
     else
       raise "Error downloading track. Response code: #{res.code}"
     end
@@ -47,7 +50,12 @@ class Beatroot
   def releases(page=1, limit=50)
     res = _get("releases?page=#{page}&per_page=#{limit}")
     if res.code == "200" then
-      JSON.parse res.body
+      body = JSON.parse res.body
+      body["releases"].map!{|model|
+        model["tracks"].map!{|t| track t["id"] }
+        Release.new(model)
+      }
+      body
     else
       raise "Error downloading tracks. Response code: #{res.code}"
     end

@@ -18,9 +18,9 @@ RSpec.describe Beatroot, "#read" do
       expect(tracks).to have_key "tracks"
       expect(tracks).to have_key "meta"
 
-      track = beatroot.track(tracks["tracks"].first["id"])
+      track = beatroot.track(tracks["tracks"].first.id)
 
-      expect(track).to have_key "track"
+      expect(track).to be_a Track
 
     end
 

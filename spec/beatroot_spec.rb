@@ -30,9 +30,9 @@ RSpec.describe Beatroot, "#read" do
       expect(releases).to have_key "releases"
       expect(releases).to have_key "meta"
 
-      release = beatroot.release(releases["releases"].first["id"])
+      release = beatroot.release(releases["releases"].first.id)
 
-      expect(release).to have_key "release"
+      expect(release).to be_a Release
 
     end
 

@@ -21,7 +21,13 @@ class Model
         model[attr] = val.is_a?(Hash) ? Model.new(val) : val
       }
       define_singleton_method(key) { model[attr] }
+
     end
+
+    def method_missing(name, *args, &block)
+      nil
+    end
+
   end
 
 end

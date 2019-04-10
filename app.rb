@@ -52,5 +52,5 @@ get '/release/:id' do
   content_type 'text/xml'
   xml = beatroot.release(params[:id]).to_s
 
-  '<?xml version="1.0" encoding="UTF-8"?>' + xml
+  '<?xml version="1.0" encoding="UTF-8"?>' + "<root>#{xml}</root>"
 end

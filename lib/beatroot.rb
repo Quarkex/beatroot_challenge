@@ -32,6 +32,24 @@ class Beatroot
     end
   end
 
+  def release(id)
+    res = _get("releases/#{id}")
+    if res.code == "200" then
+      JSON.parse res.body
+    else
+      raise "Error downloading track. Response code: #{res.code}"
+    end
+  end
+
+  def releases(page=1, limit=50)
+    res = _get("releases?page=#{page}&per_page=#{limit}")
+    if res.code == "200" then
+      JSON.parse res.body
+    else
+      raise "Error downloading tracks. Response code: #{res.code}"
+    end
+  end
+
   private
 
   def _get(target)

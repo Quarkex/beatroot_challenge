@@ -3,15 +3,16 @@ require 'config'
 
 config = Config.new('config.yml')
 
-RSpec.describe Beatroot, "#read_tracks" do
+RSpec.describe Beatroot, "#read" do
   context "with known token" do
-    it "downloads correctly from server" do
-      beatroot = Beatroot.new(
-        config.api_base_url,
-        config.account_slug,
-        config.authentication_token
-      )
 
+    beatroot = Beatroot.new(
+      config.api_base_url,
+      config.account_slug,
+      config.authentication_token
+    )
+
+    it "downloads tracks correctly from server" do
       tracks = beatroot.tracks()
 
       expect(tracks).to have_key "tracks"
@@ -22,5 +23,18 @@ RSpec.describe Beatroot, "#read_tracks" do
       expect(track).to have_key "track"
 
     end
+
+    it "downloads releases correctly from server" do
+      releases = beatroot.releases()
+
+      expect(releases).to have_key "releases"
+      expect(releases).to have_key "meta"
+
+      release = beatroot.release(releases["releases"].first["id"])
+
+      expect(release).to have_key "release"
+
+    end
+
   end
 end
